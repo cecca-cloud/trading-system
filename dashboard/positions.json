@@ -1,0 +1,39 @@
+{
+  "open": {
+    "SOFI": {
+      "ticker": "SOFI",
+      "entry_ts": "2026-06-24 10:17",
+      "entry_price": 17.90999984741211,
+      "macd_val": -0.003407,
+      "go_ts": "2026-06-24 10:17",
+      "rsi_go": 55.55,
+      "mme40_go": 53.87,
+      "confirmed_ts": null,
+      "supports": [],
+      "stop_loss": 17.0145,
+      "false_starts": 0,
+      "exit_ts": null,
+      "exit_price": null,
+      "pnl_pct": null,
+      "status": "GO"
+    },
+    "MELI": {
+      "ticker": "MELI",
+      "entry_ts": "2026-06-24 10:18",
+      "entry_price": 1625.614990234375,
+      "macd_val": -10.411677,
+      "go_ts": "2026-06-24 10:18",
+      "rsi_go": 48.21,
+      "mme40_go": 46.8,
+      "confirmed_ts": null,
+      "supports": [],
+      "stop_loss": 1544.3342,
+      "false_starts": 0,
+      "exit_ts": null,
+      "exit_price": null,
+      "pnl_pct": null,
+      "status": "GO"
+    }
+  },
+  "history": []
+}
