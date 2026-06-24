@@ -38,6 +38,12 @@
           "price": 1677.01,
           "stoch_k": 39.27,
           "stoch_d": 29.64
+        },
+        {
+          "ts": "2026-06-24 11:46",
+          "price": 1666.73,
+          "stoch_k": 37.44,
+          "stoch_d": 29.03
         }
       ],
       "stop_loss": 1544.3342,
@@ -68,6 +74,12 @@
           "price": 75.295,
           "stoch_k": 58.31,
           "stoch_d": 52.74
+        },
+        {
+          "ts": "2026-06-24 11:46",
+          "price": 74.64,
+          "stoch_k": 54.19,
+          "stoch_d": 51.37
         }
       ],
       "stop_loss": 69.217,
@@ -109,6 +121,23 @@
       "go_ts": null,
       "rsi_go": 35.21,
       "mme40_go": 36.53,
+      "confirmed_ts": null,
+      "supports": [],
+      "stop_loss": null,
+      "false_starts": 0,
+      "exit_ts": null,
+      "exit_price": null,
+      "pnl_pct": null,
+      "status": "SIGNAL"
+    },
+    "RIVN": {
+      "ticker": "RIVN",
+      "entry_ts": "2026-06-24 11:46",
+      "entry_price": 15.08,
+      "macd_val": -0.291362,
+      "go_ts": null,
+      "rsi_go": 41.71,
+      "mme40_go": 45.51,
       "confirmed_ts": null,
       "supports": [],
       "stop_loss": null,
