@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading Dashboard</title>
+<style>
+:root {
+  --bg:        #0d1117;
+  --surface:   #161b22;
+  --surface2:  #1c2128;
+  --border:    #30363d;
+  --text:      #e6edf3;
+  --muted:     #8b949e;
+  --green:     #3fb950;
+  --green-dim: #1a3a24;
+  --red:       #f85149;
+  --red-dim:   #3a1a1a;
+  --orange:    #d29922;
+  --orange-dim:#3a2a0a;
+  --blue:      #58a6ff;
+  --blue-dim:  #1a2a4a;
+  --purple:    #bc8cff;
+  --purple-dim:#2a1a3a;
+  --radius:    8px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:14px;line-height:1.5;}
+
+/* NAV */
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;height:52px;}
+.nav-brand{font-weight:700;font-size:16px;color:var(--text);}
+.nav-brand span{color:var(--green);}
+.nav-tabs{display:flex;gap:4px;}
+.tab{padding:6px 16px;border-radius:6px;cursor:pointer;color:var(--muted);font-size:13px;font-weight:500;border:none;background:none;transition:all .15s;}
+.tab:hover{color:var(--text);background:var(--surface2);}
+.tab.active{color:var(--text);background:var(--surface2);}
+.nav-right{color:var(--muted);font-size:12px;display:flex;align-items:center;gap:6px;}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* PAGES */
+.page{display:none;max-width:1400px;margin:0 auto;padding:24px;}
+.page.active{display:block;}
+
+/* STATS BAND */
+.stats-band{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:28px;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center;}
+.stat-card .val{font-size:26px;font-weight:700;}
+.stat-card .lbl{color:var(--muted);font-size:11px;margin-top:4px;text-transform:uppercase;letter-spacing:.5px;}
+
+/* SECTION */
+section{margin-bottom:32px;}
+h2{font-size:15px;font-weight:600;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+
+/* TABLE */
+.table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border);}
+table{width:100%;border-collapse:collapse;}
+thead tr{background:var(--surface);}
+th{padding:9px 14px;text-align:left;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;}
+td{padding:11px 14px;border-top:1px solid var(--border);white-space:nowrap;}
+tbody tr:hover{background:rgba(255,255,255,.025);}
+
+/* BADGES */
+.badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;}
+.b-signal   {background:var(--orange-dim);color:var(--orange);}
+.b-go       {background:var(--green-dim);color:var(--green);}
+.b-confirmed{background:var(--blue-dim);color:var(--blue);}
+.b-closed   {background:var(--purple-dim);color:var(--purple);}
+.b-long     {background:var(--green-dim);color:var(--green);}
+.b-short    {background:var(--red-dim);color:var(--red);}
+.b-win      {background:var(--green-dim);color:var(--green);}
+.b-loss     {background:var(--red-dim);color:var(--red);}
+.b-open     {background:var(--blue-dim);color:var(--blue);}
+.b-high     {background:var(--red-dim);color:var(--red);}
+.b-medium   {background:var(--orange-dim);color:var(--orange);}
+.b-low      {background:var(--surface2);color:var(--muted);}
+
+/* COLORS */
+.green{color:var(--green);} .red{color:var(--red);} .orange{color:var(--orange);}
+.blue{color:var(--blue);} .purple{color:var(--purple);} .muted{color:var(--muted);}
+
+/* TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:8px;}
+.tl-item{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);}
+.tl-icon{font-size:17px;flex-shrink:0;margin-top:2px;}
+.tl-title{font-weight:600;font-size:13px;}
+.tl-meta{color:var(--muted);font-size:12px;margin-top:2px;}
+
+/* PILLS */
+.pills{display:flex;flex-wrap:wrap;gap:5px;}
+.pill{background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:2px 9px;font-size:12px;color:var(--blue);}
+
+/* MACRO CARD */
+.macro-day{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;overflow:hidden;}
+.macro-day-header{padding:10px 16px;background:var(--surface2);font-weight:600;font-size:13px;border-bottom:1px solid var(--border);}
+.macro-event{display:flex;align-items:center;gap:12px;padding:10px 16px;border-top:1px solid var(--border);}
+.macro-event:first-of-type{border-top:none;}
+.macro-time{color:var(--muted);font-size:12px;width:60px;flex-shrink:0;}
+.macro-title{flex:1;font-size:13px;}
+.macro-vals{display:flex;gap:16px;font-size:12px;color:var(--muted);}
+.macro-val span{color:var(--text);}
+
+/* EMPTY */
+.empty{color:var(--muted);text-align:center;padding:32px;font-style:italic;}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  nav{flex-wrap:wrap;height:auto;padding:8px 12px;gap:8px;}
+  .nav-tabs{gap:2px;flex-wrap:wrap;}
+  .tab{padding:5px 10px;font-size:12px;}
+  .page{padding:12px;}
+  .stats-band{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">📈 <span>Trading</span> Dashboard</div>
+  <div class="nav-tabs">
+    <button class="tab active" onclick="showPage('tendance')">🚀 Tendance</button>
+    <button class="tab" onclick="showPage('daytrading')">⚡ Day Trading</button>
+    <button class="tab" onclick="showPage('tradelog')">📋 Trade Log</button>
+    <button class="tab" onclick="showPage('macro')">🌍 Macro</button>
+    <button class="tab" onclick="showPage('stats')">📊 Stats</button>
+  </div>
+  <div class="nav-right">
+    <span class="dot"></span>
+    <span id="last-scan">—</span>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════ -->
+<!--  PAGE TENDANCE HAUSSIÈRE               -->
+<!-- ═══════════════════════════════════════ -->
+<div class="page active" id="page-tendance">
+
+  <div class="stats-band">
+    <div class="stat-card"><div class="val green" id="t-open">—</div><div class="lbl">Positions ouvertes</div></div>
+    <div class="stat-card"><div class="val blue" id="t-confirmed">—</div><div class="lbl">Confirmées</div></div>
+    <div class="stat-card"><div class="val orange" id="t-false">—</div><div class="lbl">Faux départs</div></div>
+    <div class="stat-card"><div class="val" id="t-winrate">—</div><div class="lbl">Win rate</div></div>
+    <div class="stat-card"><div class="val" id="t-avgpnl">—</div><div class="lbl">Perf. moyenne</div></div>
+    <div class="stat-card"><div class="val purple" id="t-closed">—</div><div class="lbl">Clôturées</div></div>
+  </div>
+
+  <section>
+    <h2>🟢 Positions en cours</h2>
+    <div class="table-wrap"><table>
+      <thead><tr>
+        <th>Ticker</th><th>Statut</th><th>Signal</th><th>Entrée $</th>
+        <th>Perf.</th><th>Faux départs</th><th>Supports</th><th>Stop Loss</th><th>Confirmation</th>
+      </tr></thead>
+      <tbody id="t-open-tbody"><tr><td colspan="9" class="empty">Chargement…</td></tr></tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>📡 Signaux récents</h2>
+    <div class="timeline" id="t-timeline"><div class="empty">Chargement…</div></div>
+  </section>
+
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!--  PAGE DAY TRADING                      -->
+<!-- ═══════════════════════════════════════ -->
+<div class="page" id="page-daytrading">
+
+  <div class="stats-band">
+    <div class="stat-card"><div class="val green" id="d-signals">—</div><div class="lbl">Signaux aujourd'hui</div></div>
+    <div class="stat-card"><div class="val blue" id="d-actifs">—</div><div class="lbl">Actifs surveillés</div></div>
+    <div class="stat-card"><div class="val orange" id="d-winrate">—</div><div class="lbl">Win rate jour</div></div>
+    <div class="stat-card"><div class="val" id="d-avgpnl">—</div><div class="lbl">Perf. moy. du jour</div></div>
+  </div>
+
+  <section>
+    <h2>⚡ Signaux Day Trading — Séance en cours</h2>
+    <div class="table-wrap"><table>
+      <thead><tr>
+        <th>Heure</th><th>Ticker</th><th>Signal</th><th>Prix signal</th>
+        <th>Timeframe</th><th>RSI</th><th>MACD</th><th>Résultat</th>
+      </tr></thead>
+      <tbody id="d-tbody"><tr><td colspan="8" class="empty">Aucun signal day trading aujourd'hui</td></tr></tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>🎯 Watchlist Day Trading — Actions à privilégier</h2>
+    <div class="table-wrap"><table>
+      <thead><tr>
+        <th>Ticker</th><th>Score</th><th>Tendance 1H</th><th>RSI 15M</th>
+        <th>MACD 15M</th><th>Volume</th><th>Priorité</th>
+      </tr></thead>
+      <tbody id="d-watchlist"><tr><td colspan="7" class="empty">En attente des données du bot day trading</td></tr></tbody>
+    </table></div>
+  </section>
+
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!--  PAGE TRADE LOG                        -->
+<!-- ═══════════════════════════════════════ -->
+<div class="page" id="page-tradelog">
+
+  <div class="stats-band">
+    <div class="stat-card"><div class="val" id="l-total">—</div><div class="lbl">Total trades</div></div>
+    <div class="stat-card"><div class="val green" id="l-wins">—</div><div class="lbl">Gagnants</div></div>
+    <div class="stat-card"><div class="val red" id="l-losses">—</div><div class="lbl">Perdants</div></div>
+    <div class="stat-card"><div class="val" id="l-winrate">—</div><div class="lbl">Win rate</div></div>
+    <div class="stat-card"><div class="val green" id="l-best">—</div><div class="lbl">Meilleur trade</div></div>
+    <div class="stat-card"><div class="val red" id="l-worst">—</div><div class="lbl">Pire trade</div></div>
+    <div class="stat-card"><div class="val" id="l-avgwin">—</div><div class="lbl">Gain moyen</div></div>
+    <div class="stat-card"><div class="val" id="l-avgloss">—</div><div class="lbl">Perte moyenne</div></div>
+  </div>
+
+  <section>
+    <h2>📋 Historique complet des trades</h2>
+    <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+      <button class="tab active" id="filter-all"   onclick="filterLog('all')">Tous</button>
+      <button class="tab"        id="filter-win"   onclick="filterLog('win')">✅ Gagnants</button>
+      <button class="tab"        id="filter-loss"  onclick="filterLog('loss')">❌ Perdants</button>
+      <button class="tab"        id="filter-open"  onclick="filterLog('open')">🔵 Ouverts</button>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr>
+        <th>Ticker</th><th>Type</th><th>Entrée</th><th>Sortie</th>
+        <th>Prix entrée</th><th>Prix sortie</th><th>Performance</th>
+        <th>Durée</th><th>Faux départs</th><th>Raison sortie</th>
+      </tr></thead>
+      <tbody id="l-tbody"><tr><td colspan="10" class="empty">Chargement…</td></tr></tbody>
+    </table></div>
+  </section>
+
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!--  PAGE MACRO                            -->
+<!-- ═══════════════════════════════════════ -->
+<div class="page" id="page-macro">
+
+  <div class="stats-band">
+    <div class="stat-card"><div class="val red" id="m-high">—</div><div class="lbl">Événements HIGH</div></div>
+    <div class="stat-card"><div class="val orange" id="m-medium">—</div><div class="lbl">Événements MEDIUM</div></div>
+    <div class="stat-card"><div class="val muted" id="m-total">—</div><div class="lbl">Total cette semaine</div></div>
+  </div>
+
+  <section>
+    <h2>📅 Calendrier économique — Semaine en cours</h2>
+    <div id="m-calendar"><div class="empty">En attente des données du bot macro</div></div>
+  </section>
+
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!--  PAGE STATS GLOBALES                   -->
+<!-- ═══════════════════════════════════════ -->
+<div class="page" id="page-stats">
+
+  <section>
+    <h2>📊 Performance par ticker</h2>
+    <div class="table-wrap"><table>
+      <thead><tr>
+        <th>Ticker</th><th>Signaux</th><th>GO</th><th>Confirmés</th>
+        <th>Faux départs</th><th>Trades clôturés</th>
+        <th>Win rate</th><th>Perf. moy.</th><th>Meilleure</th><th>Pire</th>
+      </tr></thead>
+      <tbody id="s-ticker-tbody"><tr><td colspan="10" class="empty">Chargement…</td></tr></tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>📈 Courbe de performance cumulée</h2>
+    <div id="s-curve" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;min-height:200px;">
+      <canvas id="perf-canvas" style="width:100%;height:180px;"></canvas>
+    </div>
+  </section>
+
+</div>
+
+<script>
+// ─────────────────────────────────────────
+//  NAVIGATION
+// ─────────────────────────────────────────
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ─────────────────────────────────────────
+//  HELPERS
+// ─────────────────────────────────────────
+const $ = id => document.getElementById(id);
+
+function pnl(v, suffix='%') {
+  if (v == null) return '<span class="muted">—</span>';
+  const s = v >= 0 ? '+' : '';
+  const c = v > 0 ? 'green' : v < 0 ? 'red' : 'muted';
+  return `<span class="${c}">${s}${v.toFixed(2)}${suffix}</span>`;
+}
+
+function badge(cls, label) {
+  return `<span class="badge ${cls}">${label}</span>`;
+}
+
+function statusBadge(s) {
+  const m = {SIGNAL:['b-signal','🔔 Signal'],GO:['b-go','✅ GO'],CONFIRMED:['b-confirmed','🚀 Confirmé'],CLOSED:['b-closed','⏹ Clôturé']};
+  const [c,l] = m[s] || ['','—'];
+  return badge(c, l);
+}
+
+function eventIcon(ev) {
+  return {SIGNAL:'🔔',GO:'✅',FALSE_START:'🛑',CONFIRMED:'🚀',SUPPORT:'📍',EXIT:'🚨'}[ev] || 'ℹ️';
+}
+function eventLabel(ev) {
+  return {
+    SIGNAL:'1ère alerte — MACD croise signal',
+    GO:'GO investissement — RSI > MME40',
+    FALSE_START:'Faux départ — RSI recroise MME40 à la baisse',
+    CONFIRMED:'Tendance haussière confirmée — RSI > 50',
+    SUPPORT:'Support identifié — Stochastique 4H',
+    EXIT:'SORTIE TOTALE — RSI Daily < MME40',
+  }[ev] || ev;
+}
+
+function duration(t1, t2) {
+  if (!t1 || !t2) return '—';
+  const d = (new Date(t2) - new Date(t1)) / 1000 / 60 / 60;
+  if (d < 24) return Math.round(d) + 'h';
+  return Math.round(d/24) + 'j';
+}
+
+// ─────────────────────────────────────────
+//  FETCH JSON
+// ─────────────────────────────────────────
+async function loadJSON(path) {
+  try {
+    const r = await fetch(path + '?t=' + Date.now());
+    return r.ok ? r.json() : null;
+  } catch { return null; }
+}
+
+// ─────────────────────────────────────────
+//  PAGE TENDANCE
+// ─────────────────────────────────────────
+function renderTendance(positions, signals) {
+  const open    = positions?.open    || {};
+  const history = positions?.history || [];
+  const openArr = Object.values(open);
+
+  // Stats
+  $('t-open').textContent      = openArr.length;
+  $('t-confirmed').textContent = openArr.filter(p=>p.status==='CONFIRMED').length;
+  $('t-false').textContent     = [...openArr,...history].reduce((a,p)=>a+(p.false_starts||0),0);
+  $('t-closed').textContent    = history.length;
+
+  const pnls = history.map(p=>p.pnl_pct).filter(v=>v!=null);
+  if (pnls.length) {
+    const wr = Math.round(pnls.filter(v=>v>0).length/pnls.length*100);
+    $('t-winrate').innerHTML = `<span class="${wr>=50?'green':'red'}">${wr}%</span>`;
+    $('t-avgpnl').innerHTML  = pnl(pnls.reduce((a,b)=>a+b,0)/pnls.length);
+  }
+
+  // Positions ouvertes
+  const tbody = $('t-open-tbody');
+  if (!openArr.length) {
+    tbody.innerHTML = '<tr><td colspan="9" class="empty">Aucune position ouverte</td></tr>';
+  } else {
+    tbody.innerHTML = openArr.map(p => {
+      const supports = (p.supports||[]).map(s=>`<span class="pill">${s.price.toFixed(2)}$</span>`).join('');
+      return `<tr>
+        <td><strong>${p.ticker}</strong></td>
+        <td>${statusBadge(p.status)}</td>
+        <td class="muted">${p.entry_ts||'—'}</td>
+        <td><strong>${p.entry_price?p.entry_price.toFixed(2)+'$':'—'}</strong></td>
+        <td>${pnl(p.pnl_pct)}</td>
+        <td>${p.false_starts>0?`<span class="red">${p.false_starts} ⚠️</span>`:'<span class="muted">0</span>'}</td>
+        <td><div class="pills">${supports||'<span class="muted">—</span>'}</div></td>
+        <td>${p.stop_loss?`<span class="red">${p.stop_loss.toFixed(2)}$</span>`:'—'}</td>
+        <td class="muted">${p.confirmed_ts||'—'}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  // Timeline
+  const all = [];
+  for (const [ticker, evts] of Object.entries(signals||{}))
+    for (const e of evts) all.push({ticker,...e});
+  all.sort((a,b)=>b.ts.localeCompare(a.ts));
+
+  const tl = $('t-timeline');
+  if (!all.length) { tl.innerHTML = '<div class="empty">Aucun signal enregistré</div>'; return; }
+  tl.innerHTML = all.slice(0,25).map(e => {
+    const details = [];
+    if (e.price)    details.push(`Prix: <strong>${e.price.toFixed(2)}$</strong>`);
+    if (e.rsi)      details.push(`RSI: ${e.rsi.toFixed(1)}`);
+    if (e.mme40)    details.push(`MME40: ${e.mme40.toFixed(1)}`);
+    if (e.macd)     details.push(`MACD: ${e.macd.toFixed(4)}`);
+    if (e.stoch_k)  details.push(`%K: ${e.stoch_k.toFixed(1)}`);
+    if (e.pnl_pct!=null) details.push(`Perf: ${e.pnl_pct>=0?'+':''}${e.pnl_pct.toFixed(2)}%`);
+    const isFalse = e.event==='FALSE_START', isExit = e.event==='EXIT';
+    const border  = isFalse?'var(--red)':isExit?'var(--purple)':e.event==='CONFIRMED'?'var(--blue)':'var(--border)';
+    return `<div class="tl-item" style="border-left:3px solid ${border}">
+      <div class="tl-icon">${eventIcon(e.event)}</div>
+      <div>
+        <div class="tl-title">${e.ticker} — ${eventLabel(e.event)}</div>
+        <div class="tl-meta">${e.ts} &nbsp;·&nbsp; ${details.join(' &nbsp;·&nbsp; ')}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─────────────────────────────────────────
+//  PAGE DAY TRADING
+// ─────────────────────────────────────────
+function renderDayTrading(daydata) {
+  const signals  = daydata?.signals  || [];
+  const watchlist= daydata?.watchlist|| [];
+
+  $('d-signals').textContent = signals.length;
+  $('d-actifs').textContent  = watchlist.length || '—';
+
+  const pnls = signals.map(s=>s.pnl_pct).filter(v=>v!=null);
+  if (pnls.length) {
+    const wr = Math.round(pnls.filter(v=>v>0).length/pnls.length*100);
+    $('d-winrate').innerHTML = `<span class="${wr>=50?'green':'red'}">${wr}%</span>`;
+    $('d-avgpnl').innerHTML  = pnl(pnls.reduce((a,b)=>a+b,0)/pnls.length);
+  }
+
+  // Signaux
+  const tbody = $('d-tbody');
+  if (!signals.length) {
+    tbody.innerHTML = '<tr><td colspan="8" class="empty">Aucun signal day trading aujourd\'hui</td></tr>';
+  } else {
+    tbody.innerHTML = signals.map(s=>`<tr>
+      <td class="muted">${s.ts||'—'}</td>
+      <td><strong>${s.ticker}</strong></td>
+      <td>${badge('b-signal', s.signal||'—')}</td>
+      <td>${s.price?s.price.toFixed(2)+'$':'—'}</td>
+      <td class="muted">${s.timeframe||'—'}</td>
+      <td>${s.rsi?s.rsi.toFixed(1):'—'}</td>
+      <td>${s.macd?s.macd.toFixed(4):'—'}</td>
+      <td>${pnl(s.pnl_pct)}</td>
+    </tr>`).join('');
+  }
+
+  // Watchlist
+  const wl = $('d-watchlist');
+  if (!watchlist.length) {
+    wl.innerHTML = '<tr><td colspan="7" class="empty">En attente des données du bot day trading</td></tr>';
+  } else {
+    wl.innerHTML = watchlist.map(w=>`<tr>
+      <td><strong>${w.ticker}</strong></td>
+      <td><strong>${w.score||'—'}/10</strong></td>
+      <td>${w.trend_1h||'—'}</td>
+      <td>${w.rsi_15m?w.rsi_15m.toFixed(1):'—'}</td>
+      <td>${w.macd_15m||'—'}</td>
+      <td>${w.volume||'—'}</td>
+      <td>${badge(w.priority==='HIGH'?'b-high':w.priority==='MEDIUM'?'b-medium':'b-low', w.priority||'—')}</td>
+    </tr>`).join('');
+  }
+}
+
+// ─────────────────────────────────────────
+//  PAGE TRADE LOG
+// ─────────────────────────────────────────
+let allTrades = [];
+
+function filterLog(type) {
+  document.querySelectorAll('#page-tradelog .tab').forEach(t=>t.classList.remove('active'));
+  $('filter-'+type).classList.add('active');
+  let trades = allTrades;
+  if (type==='win')  trades = allTrades.filter(t=>t.pnl_pct>0);
+  if (type==='loss') trades = allTrades.filter(t=>t.pnl_pct<=0 && t.pnl_pct!=null);
+  if (type==='open') trades = allTrades.filter(t=>t.status!=='CLOSED');
+  renderLogTable(trades);
+}
+
+function renderLogTable(trades) {
+  const tbody = $('l-tbody');
+  if (!trades.length) {
+    tbody.innerHTML = '<tr><td colspan="10" class="empty">Aucun trade</td></tr>';
+    return;
+  }
+  tbody.innerHTML = trades.slice().sort((a,b)=>(b.exit_ts||b.entry_ts||'').localeCompare(a.exit_ts||a.entry_ts||'')).map(t=>`<tr>
+    <td><strong>${t.ticker}</strong></td>
+    <td>${badge(t.status==='CLOSED'?(t.pnl_pct>0?'b-win':'b-loss'):'b-open', t.status==='CLOSED'?(t.pnl_pct>0?'✅ Win':'❌ Loss'):'🔵 Ouvert')}</td>
+    <td class="muted">${t.entry_ts||'—'}</td>
+    <td class="muted">${t.exit_ts||'—'}</td>
+    <td>${t.entry_price?t.entry_price.toFixed(2)+'$':'—'}</td>
+    <td>${t.exit_price?t.exit_price.toFixed(2)+'$':'—'}</td>
+    <td>${pnl(t.pnl_pct)}</td>
+    <td class="muted">${duration(t.entry_ts, t.exit_ts)}</td>
+    <td>${t.false_starts>0?`<span class="red">${t.false_starts}</span>`:'0'}</td>
+    <td class="muted" style="font-size:12px">${t.exit_reason||'—'}</td>
+  </tr>`).join('');
+}
+
+function renderTradeLog(positions) {
+  const open    = Object.values(positions?.open    || {});
+  const history = positions?.history || [];
+  allTrades = [...history, ...open];
+
+  const closed = history;
+  const pnls   = closed.map(t=>t.pnl_pct).filter(v=>v!=null);
+  const wins   = pnls.filter(v=>v>0);
+  const losses = pnls.filter(v=>v<=0);
+
+  $('l-total').textContent  = allTrades.length;
+  $('l-wins').textContent   = wins.length;
+  $('l-losses').textContent = losses.length;
+
+  if (pnls.length) {
+    const wr = Math.round(wins.length/pnls.length*100);
+    $('l-winrate').innerHTML = `<span class="${wr>=50?'green':'red'}">${wr}%</span>`;
+    $('l-best').innerHTML    = pnl(Math.max(...pnls));
+    $('l-worst').innerHTML   = pnl(Math.min(...pnls));
+    $('l-avgwin').innerHTML  = wins.length  ? pnl(wins.reduce((a,b)=>a+b,0)/wins.length)   : '<span class="muted">—</span>';
+    $('l-avgloss').innerHTML = losses.length? pnl(losses.reduce((a,b)=>a+b,0)/losses.length): '<span class="muted">—</span>';
+  }
+  filterLog('all');
+}
+
+// ─────────────────────────────────────────
+//  PAGE MACRO
+// ─────────────────────────────────────────
+function renderMacro(macro) {
+  if (!macro?.calendar) {
+    $('m-calendar').innerHTML = '<div class="empty">En attente des données du bot macro</div>';
+    return;
+  }
+  const cal = macro.calendar;
+  const allEvts = Object.values(cal).flat();
+  const high   = allEvts.filter(e=>e.impact==='HIGH').length;
+  const medium = allEvts.filter(e=>e.impact==='MEDIUM').length;
+  $('m-high').textContent   = high;
+  $('m-medium').textContent = medium;
+  $('m-total').textContent  = allEvts.length;
+
+  $('m-calendar').innerHTML = Object.entries(cal).map(([day, evts]) => `
+    <div class="macro-day">
+      <div class="macro-day-header">📅 ${day}</div>
+      ${evts.map(e=>`
+        <div class="macro-event">
+          <div class="macro-time">${e.time||'—'}</div>
+          <div class="macro-title">${e.title}</div>
+          <div class="macro-vals">
+            <span>Préc: <span>${e.previous||'—'}</span></span>
+            <span>Est: <span>${e.estimate||'—'}</span></span>
+          </div>
+          ${badge(e.impact==='HIGH'?'b-high':e.impact==='MEDIUM'?'b-medium':'b-low', e.impact||'LOW')}
+        </div>`).join('')}
+    </div>`).join('');
+}
+
+// ─────────────────────────────────────────
+//  PAGE STATS
+// ─────────────────────────────────────────
+function renderStats(signals, positions) {
+  const history = positions?.history || [];
+  const tickers = new Set([...Object.keys(signals||{}), ...history.map(p=>p.ticker)]);
+  const tbody   = $('s-ticker-tbody');
+
+  if (!tickers.size) {
+    tbody.innerHTML = '<tr><td colspan="10" class="empty">Aucune donnée</td></tr>';
+    return;
+  }
+  tbody.innerHTML = [...tickers].sort().map(ticker => {
+    const evts   = (signals||{})[ticker] || [];
+    const closed = history.filter(p=>p.ticker===ticker);
+    const pnls   = closed.map(p=>p.pnl_pct).filter(v=>v!=null);
+    const wr     = pnls.length ? Math.round(pnls.filter(v=>v>0).length/pnls.length*100) : null;
+    const avg    = pnls.length ? pnls.reduce((a,b)=>a+b,0)/pnls.length : null;
+    return `<tr>
+      <td><strong>${ticker}</strong></td>
+      <td>${evts.filter(e=>e.event==='SIGNAL').length}</td>
+      <td>${evts.filter(e=>e.event==='GO').length}</td>
+      <td><span class="blue">${evts.filter(e=>e.event==='CONFIRMED').length}</span></td>
+      <td>${evts.filter(e=>e.event==='FALSE_START').length>0?`<span class="red">${evts.filter(e=>e.event==='FALSE_START').length}</span>`:'0'}</td>
+      <td>${closed.length}</td>
+      <td>${wr!=null?`<span class="${wr>=50?'green':'red'}">${wr}%</span>`:'—'}</td>
+      <td>${pnl(avg)}</td>
+      <td>${pnls.length?pnl(Math.max(...pnls)):'—'}</td>
+      <td>${pnls.length?pnl(Math.min(...pnls)):'—'}</td>
+    </tr>`;
+  }).join('');
+
+  // Courbe perf cumulée
+  drawCurve(history);
+}
+
+function drawCurve(history) {
+  const canvas = $('perf-canvas');
+  if (!canvas || !history.length) return;
+  const closed = history.filter(p=>p.pnl_pct!=null).sort((a,b)=>(a.exit_ts||'').localeCompare(b.exit_ts||''));
+  if (!closed.length) return;
+
+  canvas.width  = canvas.offsetWidth  || 800;
+  canvas.height = canvas.offsetHeight || 180;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const pad = 40;
+
+  let cum = 0;
+  const points = [{x:0,y:0}, ...closed.map((p,i)=>{ cum+=p.pnl_pct; return {x:i+1,y:cum}; })];
+  const xs = points.map(p=>p.x), ys = points.map(p=>p.y);
+  const minY = Math.min(...ys), maxY = Math.max(...ys);
+  const rangeY = maxY - minY || 1;
+
+  const toX = x => pad + (x / (points.length-1||1)) * (W - pad*2);
+  const toY = y => pad + (1 - (y - minY) / rangeY) * (H - pad*2);
+
+  ctx.clearRect(0,0,W,H);
+  ctx.strokeStyle = '#30363d'; ctx.lineWidth = 1;
+  [0.25,0.5,0.75].forEach(f => {
+    const y = pad + f*(H-pad*2);
+    ctx.beginPath(); ctx.moveTo(pad,y); ctx.lineTo(W-pad,y); ctx.stroke();
+  });
+
+  ctx.beginPath();
+  points.forEach((p,i) => i===0 ? ctx.moveTo(toX(p.x),toY(p.y)) : ctx.lineTo(toX(p.x),toY(p.y)));
+  const finalY = points[points.length-1].y;
+  ctx.strokeStyle = finalY >= 0 ? '#3fb950' : '#f85149';
+  ctx.lineWidth = 2; ctx.stroke();
+
+  ctx.fillStyle = '#8b949e'; ctx.font = '11px sans-serif'; ctx.textAlign = 'right';
+  ctx.fillText(maxY.toFixed(1)+'%', pad-4, pad+4);
+  ctx.fillText(minY.toFixed(1)+'%', pad-4, H-pad+4);
+}
+
+// ─────────────────────────────────────────
+//  REFRESH GLOBAL
+// ─────────────────────────────────────────
+async function refresh() {
+  const [meta, positions, signals, daydata, macro] = await Promise.all([
+    loadJSON('meta.json'),
+    loadJSON('positions.json'),
+    loadJSON('signals.json'),
+    loadJSON('daytrading.json'),
+    loadJSON('macro.json'),
+  ]);
+
+  if (meta?.last_scan) $('last-scan').textContent = 'Scan : ' + meta.last_scan;
+
+  renderTendance(positions, signals);
+  renderDayTrading(daydata || {});
+  renderTradeLog(positions);
+  renderMacro(macro || {});
+  renderStats(signals, positions);
+}
+
+refresh();
+setInterval(refresh, 60_000);
+</script>
+</body>
+</html>
