@@ -9,7 +9,8 @@ Séquence complète :
   [1H] RSI recroise MME40 ↓ (RSI < 50)    → STOP (faux départ)
   [1H] RSI > 50                            → TENDANCE CONFIRMÉE
   [4H] Stoch(34,3,3) croise signal ↑ <70  → SUPPORT
-  [1D] RSI(HLCC/4) croise MME40 ↓         → SORTIE TOTALE
+  [1D] RSI(HLCC/4) croise MME40 ↓         → SORTIE TOTALE (supprimé)
+  [1H] MACD croise signal ↓ (GO actif)    → SORTIE TOTALE
   [1D] RSI(HLCC/4) < 40 (toute watchlist) → ALERTE SURVENTE
 
 RSI : période 34, source HLCC/4 = (H+L+C+C)/4
@@ -311,7 +312,7 @@ TEMPLATES = {
         "SORTIE TOTALE\n"
         "Action : {ticker}  |  {ts}\n"
         "Prix sortie : {price:.2f}$\n"
-        "RSI Daily < MME40\n"
+        "MACD 1H croise signal a la baisse\n"
         "Performance : {pnl:+.2f}%"
     ),
     "OVERSOLD": (
@@ -438,23 +439,23 @@ def analyse_ticker(ticker, state):
                 log_signal(ticker, "SUPPORT", price, {"stoch_k": k_c, "stoch_d": d_c})
                 add_support(ticker, price, k_c, d_c)
 
-    # Données 1D (sortie + survente)
-    df1d = fetch_ohlcv(ticker, "1d", "120d")
-    if not df1d.empty and len(df1d) >= 50:
-        rsi_d = compute_rsi_hlcc(df1d["High"], df1d["Low"], df1d["Close"], period=34)
-        mme_d = compute_mme(rsi_d)
-        rd_c = float(rsi_d.iloc[-1]); rd_p = float(rsi_d.iloc[-2])
-        md_c = float(mme_d.iloc[-1]); md_p = float(mme_d.iloc[-2])
-
-        # Règle 6 : SORTIE RSI Daily croise MME40 ↓
-        if (s["go_active"] or s["trend_confirmed"]) and (rd_p >= md_p) and (rd_c < md_c):
+    # Règle 6 : SORTIE — MACD 1H croise signal à la baisse (position active)
+    if (s["go_active"] or s["trend_confirmed"]):
+        macd_cross_down = (macd_p >= sig_p) and (macd_c < sig_c)
+        if macd_cross_down:
             pos   = load_json(POSITIONS_FILE).get("open", {}).get(ticker, {})
             entry = pos.get("entry_price", price)
             pnl   = (price - entry) / entry * 100 if entry else 0
             alert(ticker, "EXIT", price, pnl=pnl)
-            log_signal(ticker, "EXIT", price, {"rsi_daily": rd_c, "pnl_pct": round(pnl, 2)})
-            close_position(ticker, price, "RSI_DAILY_CROSS_MME40")
+            log_signal(ticker, "EXIT", price, {"macd": macd_c, "sig": sig_c, "pnl_pct": round(pnl, 2)})
+            close_position(ticker, price, "MACD_1H_CROSS_DOWN")
             s["macd_alert"] = s["go_active"] = s["trend_confirmed"] = False
+
+    # Données 1D (survente uniquement)
+    df1d = fetch_ohlcv(ticker, "1d", "120d")
+    if not df1d.empty and len(df1d) >= 50:
+        rsi_d = compute_rsi_hlcc(df1d["High"], df1d["Low"], df1d["Close"], period=34)
+        rd_c = float(rsi_d.iloc[-1])
 
         # Règle 7 : SURVENTE RSI Daily < 40
         if rd_c < 40 and not s["oversold_alert"]:
