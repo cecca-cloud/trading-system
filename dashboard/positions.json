@@ -182,19 +182,19 @@
     "ARM": {
       "ticker": "ARM",
       "entry_ts": "2026-06-28 16:36",
-      "entry_price": 334.585,
+      "entry_price": 344.864990234375,
       "macd_val": -13.432048,
-      "go_ts": null,
+      "go_ts": "2026-06-29 14:11",
       "rsi_go": 38.32,
       "mme40_go": 45.12,
       "confirmed_ts": null,
       "supports": [],
-      "stop_loss": null,
+      "stop_loss": 327.6217,
       "false_starts": 0,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "SIGNAL"
+      "status": "GO"
     },
     "ASML": {
       "ticker": "ASML",
@@ -269,6 +269,12 @@
           "price": 257.64,
           "stoch_k": 52.0,
           "stoch_d": 48.61
+        },
+        {
+          "ts": "2026-06-29 14:11",
+          "price": 258.79,
+          "stoch_k": 52.38,
+          "stoch_d": 48.73
         }
       ],
       "stop_loss": 243.998,
