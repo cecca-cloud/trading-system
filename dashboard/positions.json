@@ -249,23 +249,6 @@
       "pnl_pct": null,
       "status": "SIGNAL"
     },
-    "JOBY": {
-      "ticker": "JOBY",
-      "entry_ts": "2026-06-28 16:37",
-      "entry_price": 9.09000015258789,
-      "macd_val": -0.186737,
-      "go_ts": "2026-06-29 09:33",
-      "rsi_go": 39.31,
-      "mme40_go": 43.27,
-      "confirmed_ts": null,
-      "supports": [],
-      "stop_loss": 8.6355,
-      "false_starts": 0,
-      "exit_ts": null,
-      "exit_price": null,
-      "pnl_pct": null,
-      "status": "GO"
-    },
     "RGTI": {
       "ticker": "RGTI",
       "entry_ts": "2026-06-29 09:32",
@@ -386,5 +369,24 @@
       "status": "GO"
     }
   },
-  "history": []
+  "history": [
+    {
+      "ticker": "JOBY",
+      "entry_ts": "2026-06-28 16:37",
+      "entry_price": 9.09000015258789,
+      "macd_val": -0.186737,
+      "go_ts": "2026-06-29 09:33",
+      "rsi_go": 39.31,
+      "mme40_go": 43.27,
+      "confirmed_ts": null,
+      "supports": [],
+      "stop_loss": 8.6355,
+      "false_starts": 0,
+      "exit_ts": "2026-06-29 10:34",
+      "exit_price": 8.65,
+      "pnl_pct": -4.84,
+      "status": "CLOSED",
+      "exit_reason": "MACD_1H_CROSS_DOWN"
+    }
+  ]
 }
