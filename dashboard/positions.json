@@ -107,11 +107,11 @@
         }
       ],
       "stop_loss": 64.334,
-      "false_starts": 0,
+      "false_starts": 1,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "CONFIRMED"
+      "status": "SIGNAL"
     },
     "PDD": {
       "ticker": "PDD",
@@ -235,19 +235,19 @@
     "ASML": {
       "ticker": "ASML",
       "entry_ts": "2026-06-28 16:37",
-      "entry_price": 1795.99,
+      "entry_price": 1835.0362548828125,
       "macd_val": -9.386416,
-      "go_ts": null,
+      "go_ts": "2026-06-29 11:05",
       "rsi_go": 47.58,
       "mme40_go": 49.79,
-      "confirmed_ts": null,
+      "confirmed_ts": "2026-06-29 11:05",
       "supports": [],
-      "stop_loss": null,
+      "stop_loss": 1743.2844,
       "false_starts": 0,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "SIGNAL"
+      "status": "CONFIRMED"
     },
     "RGTI": {
       "ticker": "RGTI",
@@ -260,11 +260,11 @@
       "confirmed_ts": null,
       "supports": [],
       "stop_loss": 18.24,
-      "false_starts": 0,
+      "false_starts": 1,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "GO"
+      "status": "SIGNAL"
     },
     "HPQ": {
       "ticker": "HPQ",
