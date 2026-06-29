@@ -53,42 +53,6 @@
       "pnl_pct": null,
       "status": "CONFIRMED"
     },
-    "UBER": {
-      "ticker": "UBER",
-      "entry_ts": "2026-06-24 10:48",
-      "entry_price": 72.86000061035156,
-      "macd_val": -0.245581,
-      "go_ts": "2026-06-24 10:48",
-      "rsi_go": 54.39,
-      "mme40_go": 49.67,
-      "confirmed_ts": "2026-06-24 10:48",
-      "supports": [
-        {
-          "ts": "2026-06-24 10:48",
-          "price": 72.86,
-          "stoch_k": 50.76,
-          "stoch_d": 50.22
-        },
-        {
-          "ts": "2026-06-24 11:20",
-          "price": 75.295,
-          "stoch_k": 58.31,
-          "stoch_d": 52.74
-        },
-        {
-          "ts": "2026-06-24 11:46",
-          "price": 74.64,
-          "stoch_k": 54.19,
-          "stoch_d": 51.37
-        }
-      ],
-      "stop_loss": 69.217,
-      "false_starts": 0,
-      "exit_ts": null,
-      "exit_price": null,
-      "pnl_pct": null,
-      "status": "CONFIRMED"
-    },
     "CVNA": {
       "ticker": "CVNA",
       "entry_ts": "2026-06-24 11:19",
@@ -299,7 +263,14 @@
       "rsi_go": 48.44,
       "mme40_go": 49.91,
       "confirmed_ts": "2026-06-29 13:09",
-      "supports": [],
+      "supports": [
+        {
+          "ts": "2026-06-29 13:40",
+          "price": 257.64,
+          "stoch_k": 52.0,
+          "stoch_d": 48.61
+        }
+      ],
       "stop_loss": 243.998,
       "false_starts": 0,
       "exit_ts": null,
@@ -327,19 +298,19 @@
     "MRVL": {
       "ticker": "MRVL",
       "entry_ts": "2026-06-29 09:32",
-      "entry_price": 269.61,
+      "entry_price": 273.7200012207031,
       "macd_val": -5.328866,
-      "go_ts": null,
+      "go_ts": "2026-06-29 13:40",
       "rsi_go": 45.57,
       "mme40_go": 47.92,
       "confirmed_ts": null,
       "supports": [],
-      "stop_loss": null,
+      "stop_loss": 260.034,
       "false_starts": 0,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "SIGNAL"
+      "status": "GO"
     },
     "AMD": {
       "ticker": "AMD",
@@ -391,6 +362,23 @@
       "exit_price": null,
       "pnl_pct": null,
       "status": "SIGNAL"
+    },
+    "INTC": {
+      "ticker": "INTC",
+      "entry_ts": "2026-06-29 13:40",
+      "entry_price": 130.575,
+      "macd_val": -1.015958,
+      "go_ts": null,
+      "rsi_go": 52.93,
+      "mme40_go": 54.02,
+      "confirmed_ts": null,
+      "supports": [],
+      "stop_loss": null,
+      "false_starts": 0,
+      "exit_ts": null,
+      "exit_price": null,
+      "pnl_pct": null,
+      "status": "SIGNAL"
     }
   },
   "history": [
@@ -409,6 +397,43 @@
       "exit_ts": "2026-06-29 10:34",
       "exit_price": 8.65,
       "pnl_pct": -4.84,
+      "status": "CLOSED",
+      "exit_reason": "MACD_1H_CROSS_DOWN"
+    },
+    {
+      "ticker": "UBER",
+      "entry_ts": "2026-06-24 10:48",
+      "entry_price": 72.86000061035156,
+      "macd_val": -0.245581,
+      "go_ts": "2026-06-24 10:48",
+      "rsi_go": 54.39,
+      "mme40_go": 49.67,
+      "confirmed_ts": "2026-06-24 10:48",
+      "supports": [
+        {
+          "ts": "2026-06-24 10:48",
+          "price": 72.86,
+          "stoch_k": 50.76,
+          "stoch_d": 50.22
+        },
+        {
+          "ts": "2026-06-24 11:20",
+          "price": 75.295,
+          "stoch_k": 58.31,
+          "stoch_d": 52.74
+        },
+        {
+          "ts": "2026-06-24 11:46",
+          "price": 74.64,
+          "stoch_k": 54.19,
+          "stoch_d": 51.37
+        }
+      ],
+      "stop_loss": 69.217,
+      "false_starts": 0,
+      "exit_ts": "2026-06-29 13:40",
+      "exit_price": 75.045,
+      "pnl_pct": 3.0,
       "status": "CLOSED",
       "exit_reason": "MACD_1H_CROSS_DOWN"
     }
