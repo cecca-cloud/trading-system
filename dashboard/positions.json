@@ -148,19 +148,19 @@
     "UUUU": {
       "ticker": "UUUU",
       "entry_ts": "2026-06-28 16:36",
-      "entry_price": 14.445,
+      "entry_price": 14.475000381469727,
       "macd_val": -0.343891,
-      "go_ts": null,
+      "go_ts": "2026-06-29 14:42",
       "rsi_go": 40.49,
       "mme40_go": 43.5,
       "confirmed_ts": null,
       "supports": [],
-      "stop_loss": null,
+      "stop_loss": 13.7513,
       "false_starts": 0,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "SIGNAL"
+      "status": "GO"
     },
     "SMR": {
       "ticker": "SMR",
@@ -275,6 +275,12 @@
           "price": 258.79,
           "stoch_k": 52.38,
           "stoch_d": 48.73
+        },
+        {
+          "ts": "2026-06-29 14:42",
+          "price": 259.48,
+          "stoch_k": 52.61,
+          "stoch_d": 48.81
         }
       ],
       "stop_loss": 243.998,
