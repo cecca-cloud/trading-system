@@ -241,7 +241,14 @@
       "rsi_go": 47.58,
       "mme40_go": 49.79,
       "confirmed_ts": "2026-06-29 11:05",
-      "supports": [],
+      "supports": [
+        {
+          "ts": "2026-06-29 13:10",
+          "price": 1872.5901,
+          "stoch_k": 57.64,
+          "stoch_d": 57.3
+        }
+      ],
       "stop_loss": 1743.2844,
       "false_starts": 0,
       "exit_ts": null,
@@ -291,14 +298,14 @@
       "go_ts": "2026-06-29 12:38",
       "rsi_go": 48.44,
       "mme40_go": 49.91,
-      "confirmed_ts": null,
+      "confirmed_ts": "2026-06-29 13:09",
       "supports": [],
       "stop_loss": 243.998,
       "false_starts": 0,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "GO"
+      "status": "CONFIRMED"
     },
     "IONQ": {
       "ticker": "IONQ",
