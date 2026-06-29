@@ -286,19 +286,19 @@
     "NBIS": {
       "ticker": "NBIS",
       "entry_ts": "2026-06-29 09:32",
-      "entry_price": 256.1,
+      "entry_price": 256.8399963378906,
       "macd_val": -6.848968,
-      "go_ts": null,
+      "go_ts": "2026-06-29 12:38",
       "rsi_go": 48.44,
       "mme40_go": 49.91,
       "confirmed_ts": null,
       "supports": [],
-      "stop_loss": null,
+      "stop_loss": 243.998,
       "false_starts": 0,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "SIGNAL"
+      "status": "GO"
     },
     "IONQ": {
       "ticker": "IONQ",
