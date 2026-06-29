@@ -252,19 +252,19 @@
     "RGTI": {
       "ticker": "RGTI",
       "entry_ts": "2026-06-29 09:32",
-      "entry_price": 19.200000762939453,
+      "entry_price": 19.0049991607666,
       "macd_val": -0.523325,
-      "go_ts": "2026-06-29 09:32",
+      "go_ts": "2026-06-29 12:07",
       "rsi_go": 42.87,
       "mme40_go": 42.04,
       "confirmed_ts": null,
       "supports": [],
-      "stop_loss": 18.24,
+      "stop_loss": 18.0547,
       "false_starts": 1,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "SIGNAL"
+      "status": "GO"
     },
     "HPQ": {
       "ticker": "HPQ",
@@ -337,19 +337,19 @@
     "AMD": {
       "ticker": "AMD",
       "entry_ts": "2026-06-29 09:32",
-      "entry_price": 522.16,
+      "entry_price": 526.239990234375,
       "macd_val": -1.174367,
-      "go_ts": null,
+      "go_ts": "2026-06-29 12:07",
       "rsi_go": 50.81,
       "mme40_go": 51.93,
-      "confirmed_ts": null,
+      "confirmed_ts": "2026-06-29 12:07",
       "supports": [],
-      "stop_loss": null,
+      "stop_loss": 499.928,
       "false_starts": 0,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "SIGNAL"
+      "status": "CONFIRMED"
     },
     "SNPS": {
       "ticker": "SNPS",
@@ -367,6 +367,23 @@
       "exit_price": null,
       "pnl_pct": null,
       "status": "GO"
+    },
+    "AVGO": {
+      "ticker": "AVGO",
+      "entry_ts": "2026-06-29 12:07",
+      "entry_price": 371.37,
+      "macd_val": -4.714068,
+      "go_ts": null,
+      "rsi_go": 41.76,
+      "mme40_go": 43.28,
+      "confirmed_ts": null,
+      "supports": [],
+      "stop_loss": null,
+      "false_starts": 0,
+      "exit_ts": null,
+      "exit_price": null,
+      "pnl_pct": null,
+      "status": "SIGNAL"
     }
   },
   "history": [
