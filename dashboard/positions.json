@@ -150,19 +150,19 @@
     "OKLO": {
       "ticker": "OKLO",
       "entry_ts": "2026-06-28 16:36",
-      "entry_price": 50.02,
+      "entry_price": 52.4900016784668,
       "macd_val": -1.84193,
-      "go_ts": null,
+      "go_ts": "2026-06-29 10:03",
       "rsi_go": 32.59,
       "mme40_go": 39.67,
       "confirmed_ts": null,
       "supports": [],
-      "stop_loss": null,
+      "stop_loss": 49.8655,
       "false_starts": 0,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "SIGNAL"
+      "status": "GO"
     },
     "CRWV": {
       "ticker": "CRWV",
@@ -367,6 +367,23 @@
       "exit_price": null,
       "pnl_pct": null,
       "status": "SIGNAL"
+    },
+    "SNPS": {
+      "ticker": "SNPS",
+      "entry_ts": "2026-06-29 10:03",
+      "entry_price": 458.20001220703125,
+      "macd_val": -2.662494,
+      "go_ts": "2026-06-29 10:03",
+      "rsi_go": 47.75,
+      "mme40_go": 46.8,
+      "confirmed_ts": null,
+      "supports": [],
+      "stop_loss": 435.29,
+      "false_starts": 0,
+      "exit_ts": null,
+      "exit_price": null,
+      "pnl_pct": null,
+      "status": "GO"
     }
   },
   "history": []
