@@ -17,42 +17,6 @@
       "pnl_pct": null,
       "status": "GO"
     },
-    "MELI": {
-      "ticker": "MELI",
-      "entry_ts": "2026-06-24 10:18",
-      "entry_price": 1625.614990234375,
-      "macd_val": -10.411677,
-      "go_ts": "2026-06-24 10:18",
-      "rsi_go": 48.21,
-      "mme40_go": 46.8,
-      "confirmed_ts": "2026-06-24 10:48",
-      "supports": [
-        {
-          "ts": "2026-06-24 10:48",
-          "price": 1644.73,
-          "stoch_k": 33.54,
-          "stoch_d": 27.73
-        },
-        {
-          "ts": "2026-06-24 11:20",
-          "price": 1677.01,
-          "stoch_k": 39.27,
-          "stoch_d": 29.64
-        },
-        {
-          "ts": "2026-06-24 11:46",
-          "price": 1666.73,
-          "stoch_k": 37.44,
-          "stoch_d": 29.03
-        }
-      ],
-      "stop_loss": 1544.3342,
-      "false_starts": 0,
-      "exit_ts": null,
-      "exit_price": null,
-      "pnl_pct": null,
-      "status": "CONFIRMED"
-    },
     "CVNA": {
       "ticker": "CVNA",
       "entry_ts": "2026-06-24 11:19",
@@ -173,11 +137,11 @@
       "confirmed_ts": null,
       "supports": [],
       "stop_loss": 9.918,
-      "false_starts": 0,
+      "false_starts": 1,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "GO"
+      "status": "SIGNAL"
     },
     "ARM": {
       "ticker": "ARM",
@@ -345,14 +309,14 @@
       "go_ts": "2026-06-29 13:40",
       "rsi_go": 45.57,
       "mme40_go": 47.92,
-      "confirmed_ts": null,
+      "confirmed_ts": "2026-06-30 09:32",
       "supports": [],
       "stop_loss": 260.034,
       "false_starts": 0,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "GO"
+      "status": "CONFIRMED"
     },
     "AMD": {
       "ticker": "AMD",
@@ -391,36 +355,36 @@
     "AVGO": {
       "ticker": "AVGO",
       "entry_ts": "2026-06-29 12:07",
-      "entry_price": 371.37,
+      "entry_price": 373.7099914550781,
       "macd_val": -4.714068,
-      "go_ts": null,
+      "go_ts": "2026-06-30 09:32",
       "rsi_go": 41.76,
       "mme40_go": 43.28,
       "confirmed_ts": null,
       "supports": [],
-      "stop_loss": null,
+      "stop_loss": 355.0245,
       "false_starts": 0,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "SIGNAL"
+      "status": "GO"
     },
     "INTC": {
       "ticker": "INTC",
       "entry_ts": "2026-06-29 13:40",
-      "entry_price": 130.575,
+      "entry_price": 132.72999572753906,
       "macd_val": -1.015958,
-      "go_ts": null,
+      "go_ts": "2026-06-30 09:32",
       "rsi_go": 52.93,
       "mme40_go": 54.02,
       "confirmed_ts": null,
       "supports": [],
-      "stop_loss": null,
+      "stop_loss": 126.0935,
       "false_starts": 0,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "SIGNAL"
+      "status": "GO"
     },
     "NXPI": {
       "ticker": "NXPI",
@@ -442,11 +406,28 @@
     "JOBY": {
       "ticker": "JOBY",
       "entry_ts": "2026-06-29 15:44",
-      "entry_price": 8.605,
+      "entry_price": 8.9399995803833,
       "macd_val": -0.199324,
-      "go_ts": null,
+      "go_ts": "2026-06-30 09:33",
       "rsi_go": 37.99,
       "mme40_go": 41.48,
+      "confirmed_ts": null,
+      "supports": [],
+      "stop_loss": 8.493,
+      "false_starts": 0,
+      "exit_ts": null,
+      "exit_price": null,
+      "pnl_pct": null,
+      "status": "GO"
+    },
+    "ON": {
+      "ticker": "ON",
+      "entry_ts": "2026-06-30 09:33",
+      "entry_price": 91.13,
+      "macd_val": -6.976617,
+      "go_ts": null,
+      "rsi_go": 32.82,
+      "mme40_go": 39.2,
       "confirmed_ts": null,
       "supports": [],
       "stop_loss": null,
@@ -510,6 +491,43 @@
       "exit_ts": "2026-06-29 13:40",
       "exit_price": 75.045,
       "pnl_pct": 3.0,
+      "status": "CLOSED",
+      "exit_reason": "MACD_1H_CROSS_DOWN"
+    },
+    {
+      "ticker": "MELI",
+      "entry_ts": "2026-06-24 10:18",
+      "entry_price": 1625.614990234375,
+      "macd_val": -10.411677,
+      "go_ts": "2026-06-24 10:18",
+      "rsi_go": 48.21,
+      "mme40_go": 46.8,
+      "confirmed_ts": "2026-06-24 10:48",
+      "supports": [
+        {
+          "ts": "2026-06-24 10:48",
+          "price": 1644.73,
+          "stoch_k": 33.54,
+          "stoch_d": 27.73
+        },
+        {
+          "ts": "2026-06-24 11:20",
+          "price": 1677.01,
+          "stoch_k": 39.27,
+          "stoch_d": 29.64
+        },
+        {
+          "ts": "2026-06-24 11:46",
+          "price": 1666.73,
+          "stoch_k": 37.44,
+          "stoch_d": 29.03
+        }
+      ],
+      "stop_loss": 1544.3342,
+      "false_starts": 0,
+      "exit_ts": "2026-06-30 09:33",
+      "exit_price": 1669.04,
+      "pnl_pct": 2.67,
       "status": "CLOSED",
       "exit_reason": "MACD_1H_CROSS_DOWN"
     }
