@@ -453,6 +453,23 @@
       "exit_price": null,
       "pnl_pct": null,
       "status": "GO"
+    },
+    "EOSE": {
+      "ticker": "EOSE",
+      "entry_ts": "2026-06-30 16:02",
+      "entry_price": 5.885,
+      "macd_val": -0.125464,
+      "go_ts": null,
+      "rsi_go": 40.52,
+      "mme40_go": 41.06,
+      "confirmed_ts": null,
+      "supports": [],
+      "stop_loss": null,
+      "false_starts": 0,
+      "exit_ts": null,
+      "exit_price": null,
+      "pnl_pct": null,
+      "status": "SIGNAL"
     }
   },
   "history": [
