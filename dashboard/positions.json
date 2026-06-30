@@ -436,6 +436,23 @@
       "exit_price": null,
       "pnl_pct": null,
       "status": "SIGNAL"
+    },
+    "SNPS": {
+      "ticker": "SNPS",
+      "entry_ts": "2026-06-30 13:39",
+      "entry_price": 443.925,
+      "macd_val": -3.776976,
+      "go_ts": null,
+      "rsi_go": 42.41,
+      "mme40_go": 44.91,
+      "confirmed_ts": null,
+      "supports": [],
+      "stop_loss": null,
+      "false_starts": 0,
+      "exit_ts": null,
+      "exit_price": null,
+      "pnl_pct": null,
+      "status": "SIGNAL"
     }
   },
   "history": [
