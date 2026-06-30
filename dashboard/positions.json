@@ -436,6 +436,23 @@
       "exit_price": null,
       "pnl_pct": null,
       "status": "SIGNAL"
+    },
+    "QCOM": {
+      "ticker": "QCOM",
+      "entry_ts": "2026-06-30 10:35",
+      "entry_price": 190.8201,
+      "macd_val": -4.434234,
+      "go_ts": null,
+      "rsi_go": 40.52,
+      "mme40_go": 42.92,
+      "confirmed_ts": null,
+      "supports": [],
+      "stop_loss": null,
+      "false_starts": 0,
+      "exit_ts": null,
+      "exit_price": null,
+      "pnl_pct": null,
+      "status": "SIGNAL"
     }
   },
   "history": [
