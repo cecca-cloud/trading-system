@@ -767,6 +767,12 @@
       "event": "OVERSOLD",
       "price": 115.055,
       "rsi_daily": 39.234020626404764
+    },
+    {
+      "ts": "2026-06-30 14:10",
+      "event": "OVERSOLD",
+      "price": 117.55,
+      "rsi_daily": 39.93371338374654
     }
   ],
   "ORCL": [
