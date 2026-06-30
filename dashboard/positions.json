@@ -1,22 +1,5 @@
 {
   "open": {
-    "SOFI": {
-      "ticker": "SOFI",
-      "entry_ts": "2026-06-24 10:17",
-      "entry_price": 17.90999984741211,
-      "macd_val": -0.003407,
-      "go_ts": "2026-06-24 10:17",
-      "rsi_go": 55.55,
-      "mme40_go": 53.87,
-      "confirmed_ts": null,
-      "supports": [],
-      "stop_loss": 17.0145,
-      "false_starts": 0,
-      "exit_ts": null,
-      "exit_price": null,
-      "pnl_pct": null,
-      "status": "GO"
-    },
     "CVNA": {
       "ticker": "CVNA",
       "entry_ts": "2026-06-24 11:19",
@@ -563,6 +546,24 @@
       "exit_ts": "2026-06-30 11:36",
       "exit_price": 443.0775,
       "pnl_pct": -3.3,
+      "status": "CLOSED",
+      "exit_reason": "MACD_1H_CROSS_DOWN"
+    },
+    {
+      "ticker": "SOFI",
+      "entry_ts": "2026-06-24 10:17",
+      "entry_price": 17.90999984741211,
+      "macd_val": -0.003407,
+      "go_ts": "2026-06-24 10:17",
+      "rsi_go": 55.55,
+      "mme40_go": 53.87,
+      "confirmed_ts": null,
+      "supports": [],
+      "stop_loss": 17.0145,
+      "false_starts": 0,
+      "exit_ts": "2026-06-30 14:40",
+      "exit_price": 17.87,
+      "pnl_pct": -0.22,
       "status": "CLOSED",
       "exit_reason": "MACD_1H_CROSS_DOWN"
     }
