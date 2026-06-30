@@ -86,11 +86,11 @@
       "confirmed_ts": null,
       "supports": [],
       "stop_loss": 49.8655,
-      "false_starts": 0,
+      "false_starts": 1,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "GO"
+      "status": "SIGNAL"
     },
     "CRWV": {
       "ticker": "CRWV",
