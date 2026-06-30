@@ -78,19 +78,19 @@
     "OKLO": {
       "ticker": "OKLO",
       "entry_ts": "2026-06-28 16:36",
-      "entry_price": 52.4900016784668,
+      "entry_price": 51.939998626708984,
       "macd_val": -1.84193,
-      "go_ts": "2026-06-29 10:03",
+      "go_ts": "2026-06-30 13:08",
       "rsi_go": 32.59,
       "mme40_go": 39.67,
       "confirmed_ts": null,
       "supports": [],
-      "stop_loss": 49.8655,
+      "stop_loss": 49.343,
       "false_starts": 1,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "SIGNAL"
+      "status": "GO"
     },
     "CRWV": {
       "ticker": "CRWV",
@@ -112,19 +112,19 @@
     "UUUU": {
       "ticker": "UUUU",
       "entry_ts": "2026-06-28 16:36",
-      "entry_price": 14.475000381469727,
+      "entry_price": 14.4350004196167,
       "macd_val": -0.343891,
-      "go_ts": "2026-06-29 14:42",
+      "go_ts": "2026-06-30 13:08",
       "rsi_go": 40.49,
       "mme40_go": 43.5,
       "confirmed_ts": null,
       "supports": [],
-      "stop_loss": 13.7513,
+      "stop_loss": 13.7133,
       "false_starts": 1,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "SIGNAL"
+      "status": "GO"
     },
     "SMR": {
       "ticker": "SMR",
