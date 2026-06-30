@@ -436,6 +436,23 @@
       "exit_price": null,
       "pnl_pct": null,
       "status": "SIGNAL"
+    },
+    "COIN": {
+      "ticker": "COIN",
+      "entry_ts": "2026-06-30 15:42",
+      "entry_price": 146.22999572753906,
+      "macd_val": -1.596509,
+      "go_ts": "2026-06-30 15:42",
+      "rsi_go": 40.93,
+      "mme40_go": 40.76,
+      "confirmed_ts": null,
+      "supports": [],
+      "stop_loss": 138.9185,
+      "false_starts": 0,
+      "exit_ts": null,
+      "exit_price": null,
+      "pnl_pct": null,
+      "status": "GO"
     }
   },
   "history": [
