@@ -95,19 +95,19 @@
     "CRWV": {
       "ticker": "CRWV",
       "entry_ts": "2026-06-28 16:36",
-      "entry_price": 96.42,
+      "entry_price": 97.62039947509766,
       "macd_val": -3.153034,
-      "go_ts": null,
+      "go_ts": "2026-06-30 10:03",
       "rsi_go": 39.87,
       "mme40_go": 44.31,
       "confirmed_ts": null,
       "supports": [],
-      "stop_loss": null,
+      "stop_loss": 92.7394,
       "false_starts": 0,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "SIGNAL"
+      "status": "GO"
     },
     "UUUU": {
       "ticker": "UUUU",
@@ -120,11 +120,11 @@
       "confirmed_ts": null,
       "supports": [],
       "stop_loss": 13.7513,
-      "false_starts": 0,
+      "false_starts": 1,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "GO"
+      "status": "SIGNAL"
     },
     "SMR": {
       "ticker": "SMR",
