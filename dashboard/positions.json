@@ -117,14 +117,21 @@
       "go_ts": "2026-07-01 09:56",
       "rsi_go": 43.58,
       "mme40_go": 45.98,
-      "confirmed_ts": null,
-      "supports": [],
+      "confirmed_ts": "2026-07-01 10:19",
+      "supports": [
+        {
+          "ts": "2026-07-01 10:20",
+          "price": 10.525,
+          "stoch_k": 35.58,
+          "stoch_d": 32.58
+        }
+      ],
       "stop_loss": 9.709,
       "false_starts": 1,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "GO"
+      "status": "CONFIRMED"
     },
     "ARM": {
       "ticker": "ARM",
@@ -435,6 +442,12 @@
           "price": 461.4952,
           "stoch_k": 23.17,
           "stoch_d": 15.51
+        },
+        {
+          "ts": "2026-07-01 10:20",
+          "price": 463.51,
+          "stoch_k": 24.54,
+          "stoch_d": 15.97
         }
       ],
       "stop_loss": 438.4204,
@@ -452,14 +465,21 @@
       "go_ts": "2026-06-30 15:42",
       "rsi_go": 40.93,
       "mme40_go": 40.76,
-      "confirmed_ts": null,
-      "supports": [],
+      "confirmed_ts": "2026-07-01 10:20",
+      "supports": [
+        {
+          "ts": "2026-07-01 10:20",
+          "price": 156.55,
+          "stoch_k": 26.35,
+          "stoch_d": 24.79
+        }
+      ],
       "stop_loss": 138.9185,
       "false_starts": 0,
       "exit_ts": null,
       "exit_price": null,
       "pnl_pct": null,
-      "status": "GO"
+      "status": "CONFIRMED"
     },
     "EOSE": {
       "ticker": "EOSE",
