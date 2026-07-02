@@ -174,23 +174,6 @@
       "pnl_pct": null,
       "status": "CONFIRMED"
     },
-    "RGTI": {
-      "ticker": "RGTI",
-      "entry_ts": "2026-06-29 09:32",
-      "entry_price": 19.0049991607666,
-      "macd_val": -0.523325,
-      "go_ts": "2026-06-29 12:07",
-      "rsi_go": 42.87,
-      "mme40_go": 42.04,
-      "confirmed_ts": null,
-      "supports": [],
-      "stop_loss": 18.0547,
-      "false_starts": 1,
-      "exit_ts": null,
-      "exit_price": null,
-      "pnl_pct": null,
-      "status": "GO"
-    },
     "HPQ": {
       "ticker": "HPQ",
       "entry_ts": "2026-06-29 09:32",
@@ -625,6 +608,24 @@
       "exit_ts": "2026-06-30 14:40",
       "exit_price": 17.87,
       "pnl_pct": -0.22,
+      "status": "CLOSED",
+      "exit_reason": "MACD_1H_CROSS_DOWN"
+    },
+    {
+      "ticker": "RGTI",
+      "entry_ts": "2026-06-29 09:32",
+      "entry_price": 19.0049991607666,
+      "macd_val": -0.523325,
+      "go_ts": "2026-06-29 12:07",
+      "rsi_go": 42.87,
+      "mme40_go": 42.04,
+      "confirmed_ts": null,
+      "supports": [],
+      "stop_loss": 18.0547,
+      "false_starts": 1,
+      "exit_ts": "2026-07-02 01:44",
+      "exit_price": 18.69,
+      "pnl_pct": -1.66,
       "status": "CLOSED",
       "exit_reason": "MACD_1H_CROSS_DOWN"
     }
